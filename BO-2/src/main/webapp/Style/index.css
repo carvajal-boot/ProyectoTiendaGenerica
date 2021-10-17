@@ -1,0 +1,68 @@
+body{
+  background-image:  url("https://cdn.pixabay.com/photo/2018/09/26/21/24/corn-3705687_960_720.jpg");
+  background-size: cover;
+
+  }
+
+ body::after {
+
+  background: url(image.jpg);
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;   
+}
+
+.menu input[type = "text"]:focus,.menu input[type = "password"]:focus{
+  width: 280px;
+  border-color: orange;
+}
+
+.menu input[type = "text"],.menu input[type = "password"]{
+  border:0;
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 2px solid orange;
+  padding: 14px 10px;
+  width: 200px;
+  outline: none;
+  color: orange;
+  border-radius: 24px;
+  transition: 0.25s;
+  cursor: pointer;
+  font-weight: bolder;
+
+}
+
+::-webkit-input-placeholder { color:orange; }
+
+.menu input[type="text"]:hover {
+  background: lightyellow;
+}
+
+.menu input[type="password"]:hover {
+  background: lightyellow;
+}
+
+.formulario{
+  background-color: rgb(0, 0,0,0.5);
+  width: 50%;
+  border-radius: 10px;
+  margin: 20px;
+
+}
+
+.titulo{
+
+  color: whitesmoke;
+}
+
+.btn btn-link{
+  color: yellow;
+}
+

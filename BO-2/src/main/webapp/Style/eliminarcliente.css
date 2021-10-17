@@ -1,0 +1,24 @@
+body{
+  background-image:  url("https://cdn.pixabay.com/photo/2020/08/23/14/08/apple-5510940_960_720.jpg");
+  background-size: cover;
+
+  }
+
+
+.formulario{
+  background-color: rgba(45, 87, 48, 0.658);
+  border-radius: 10px;
+  width: 75%;
+  position: relative;
+  left: 500px;
+  top: 50%;
+  
+}
+
+.titulo{
+  color: whitesmoke;
+}
+
+.input-group{
+  width: 60%;
+}
