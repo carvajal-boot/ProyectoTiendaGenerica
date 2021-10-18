@@ -87,7 +87,8 @@
 							onclick="window.location.href='/eliminarusuario.jsp'">
 							<i class="far fa-trash-alt"></i> Eliminar
 						</button>
-						<button type="button" class="btn btn-secondary">
+						<button type="button" class="btn btn-secondary"
+						onclick="window.location.href='/listausuarios.jsp'">
 							<i class="fas fa-list-ol"></i> Enlistar
 						</button>
 

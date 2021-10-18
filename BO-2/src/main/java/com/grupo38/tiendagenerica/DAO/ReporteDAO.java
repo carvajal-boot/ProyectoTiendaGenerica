@@ -36,14 +36,14 @@ public class ReporteDAO {
 			ResultSet res = consulta.executeQuery();
 
 			// cree un objeto basado en la clase entidad con los datos encontrados
-			if (res.next()) {
+			while (res.next()) {
 				ReporteVO Usuario = new ReporteVO();
 				Usuario.setCodigo_venta(Integer.parseInt(res.getString("codigo_venta")));
 				Usuario.setCedula_cliente(Integer.parseInt(res.getString("cedula_cliente")));
 				Usuario.setCedula_usuario(Integer.parseInt(res.getString("cedula_usuario")));
 				Usuario.setIva_venta(Float.parseFloat(res.getString("iva_venta")));
-				Usuario.setTotal_venta(Float.parseFloat(res.getString("correo_cliente")));
-				Usuario.setValor_venta (Float.parseFloat(res.getString("correo_cliente")));
+				Usuario.setTotal_venta(Float.parseFloat(res.getString("total_venta")));
+				Usuario.setValor_venta (Float.parseFloat(res.getString("valor_venta")));
 				listausuarios.add(Usuario);
 			}
 
@@ -65,6 +65,57 @@ public class ReporteDAO {
 			System.out.println(e.getMessage());
 			System.out.println(e.getLocalizedMessage());
 		}
+		return listausuarios;
+	}
+	
+	
+	
+	public ArrayList<ReporteVO> listaDeClientesReportes() {
+		// lista que contendra el o los usuarios obtenidos
+		ArrayList<ReporteVO> listausuarios = new ArrayList<ReporteVO>();
+
+		// instancia de la conexión
+		Conexion conex = new Conexion();
+
+		try {
+			// prepare la sentencia en la base de datos
+			PreparedStatement consulta = conex.getConnection().prepareStatement("SELECT * FROM ventas");
+
+			// ejecute la sentencia
+			ResultSet res = consulta.executeQuery();
+
+			// cree un objeto para cada encontrado en la base de datos basado en la clase
+			// entidad con los datos encontrados
+			while (res.next()) {
+				ReporteVO Usuario = new ReporteVO();
+				Usuario.setCodigo_venta(Integer.parseInt(res.getString("codigo_venta")));
+				Usuario.setCedula_cliente(Integer.parseInt(res.getString("cedula_cliente")));
+				Usuario.setCedula_usuario(Integer.parseInt(res.getString("cedula_usuario")));
+				Usuario.setIva_venta(Float.parseFloat(res.getString("iva_venta")));
+				Usuario.setTotal_venta(Float.parseFloat(res.getString("total_venta")));
+				Usuario.setValor_venta (Float.parseFloat(res.getString("valor_venta")));
+				listausuarios.add(Usuario);
+			}
+
+			// cerrar resultado, sentencia y conexión
+			res.close();
+			consulta.close();
+			conex.desconectar();
+
+		} catch (SQLException e) {
+			// si hay un error en el sql mostrarlo
+			System.out.println("------------------- ERROR --------------");
+			System.out.println("No se pudo consultar todos los clientes");
+			System.out.println(e.getMessage());
+			System.out.println(e.getErrorCode());
+		} catch (Exception e) {
+			// si hay cualquier otro error mostrarlo
+			System.out.println("------------------- ERROR --------------");
+			System.out.println("No se pudo consultar todos los clientes");
+			System.out.println(e.getMessage());
+			System.out.println(e.getLocalizedMessage());
+		}
+
 		return listausuarios;
 	}
 	

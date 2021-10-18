@@ -29,5 +29,11 @@ public class ReporteController {
 		ReporteDAO Dao = new ReporteDAO();
 		return Dao.consultarReporte(cliente);
 	}
+	
+	@GetMapping("/listarclientesreportes")
+	public ArrayList<ReporteVO> listaDeClientesReportes() {
+		ReporteDAO Dao = new ReporteDAO();
+		return Dao.listaDeClientesReportes();
+	}
 
 }
