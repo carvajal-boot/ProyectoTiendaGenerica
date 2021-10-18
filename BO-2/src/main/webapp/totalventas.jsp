@@ -18,13 +18,14 @@
 	crossorigin="anonymous">
 	
 </script>
-
+<link href="Style/listacliente.css" rel="stylesheet" type="text/css" />
 <link href="style.css" rel="stylesheet" type="text/css" />
 <!-- font awesome-->
 <script src="https://kit.fontawesome.com/8e9e769e03.js"
 	crossorigin="anonymous">
 	
 </script>
+
 </head>
 
 <body>
@@ -137,7 +138,7 @@
 
 	</script>
 	<center>
-		<h1>
+		<h1 class= "title">
 			<i class="fas fa-list-ol"></i> Tabla de Ventas
 		</h1>
 	</center>

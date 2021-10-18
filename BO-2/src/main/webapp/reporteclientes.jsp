@@ -77,7 +77,7 @@
 
 						<button type="button" class="btn btn-primary"
 							onclick="window.location.href='/totalventas.jsp'">
-							<i class="fas fa-search"></i> Listado de ventas
+							<i class="fas fa-search"></i> Listado de ventas por cliente
 						</button>
 
 </ul>
