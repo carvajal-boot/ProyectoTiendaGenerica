@@ -245,7 +245,7 @@
 			<div class="col-md-4">
 				<div class="card shadow" style="width: 25rem;">
 					<button type="button" class="btn btn-info"
-						onclick="window.location.href='/ingresarproductos.jsp'">
+						onclick="window.location.href='/reporteclientes.jsp'">
 
 						<i class="fas fa-arrow-circle-up"></i> Ingresar
 					</button>

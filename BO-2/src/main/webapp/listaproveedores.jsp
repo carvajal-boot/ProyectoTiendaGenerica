@@ -64,14 +64,11 @@
 					var tbltop = "<table class='table table-dark table-striped'><tr><th>cedula_proveedor</th><th>ciudad_proveedor</th><th>direccion_proveedor</th><th>nombre_proveedor</th><th>telefono_proveedor</th></tr>";
 					var main = "";
 					for (i = 0; i < proveedores.length; i++) {
-						main += "<tr><td>" + proveedores[i].cedula_proveedor
-								+ "</td><td>" + proveedores[i].ciudad_proveedor
-								+ "</td><td>"
-								+ proveedores[i].direccion_proveedor
-								+ "</td><td>" + proveedores[i].nombre_proveedor
-								+ "</td><td>"
-								+ proveedores[i].telefono_proveedor
-								+ "</td></tr>";
+						main += "<tr><td>" + proveedores[i].cedula_proveedor + "</td><td>" 
+						+ proveedores[i].ciudad_proveedor + "</td><td>"
+						+ proveedores[i].direccion_proveedor + "</td><td>" 
+						+ proveedores[i].nombre_proveedor + "</td><td>"
+						+ proveedores[i].telefono_proveedor + "</td></tr>";
 					}
 					var tblbottom = "</table>";
 					var tbl = tbltop + main + tblbottom;

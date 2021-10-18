@@ -1,214 +1,100 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-<meta charset="utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<meta name="description"
-	content="Proyecto de entrenamiento en desarrollo web" />
-<meta name="author" content="Ing. Diego Rodriguez" />
-<title>Lista de clientes</title>
-
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
-	crossorigin="anonymous"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>repl.it</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+<!--Llamando librerias y estilos Boostrap-->
 <link
-	href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
-	rel="stylesheet" />
-<link href="css/styles.css" rel="stylesheet" />
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+	crossorigin="anonymous">
 	
-	<h5>
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-			<div class="container-fluid">
-				<div id="navbarNavDropdown">
-					<ul class="navbar-nav">
-						<li class="nav-item"><a class="nav-link active"
-							aria-current="page" href="home.jsp"> <i
-								class="fas fa-house-user"></i> Inicio
-						</a></li>
-					</ul>
-				</div>
-			</div>
-	</h5>
-
-<script>
-	
-	window.addEventListener('DOMContentLoaded', event => {
-	    // Simple-DataTables
-	    // https://github.com/fiduswriter/Simple-DataTables/wiki
-		let table=null;
-	    if (datatablesclients) {
-	        table=new simpleDatatables.DataTable("#datatablesclients", {
-	            searchable: true,
-	            labels: {
-	                placeholder: "Buscar...",
-	                perPage: "{select} registros por pagina",
-	                noRows: "No hay registros",
-	                info: "Mostrando {start} a {end} de {rows} registros",
-	            }
-	        });
-	    }
-			var xmlhttp = new XMLHttpRequest();
-			xmlhttp.open("GET", "http://localhost:8080/listarclientes", true);
-			xmlhttp.onreadystatechange = function() {
-				if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-
-					var usuarios = JSON.parse(xmlhttp.responseText);
-					
-					for (i = 0; i < usuarios.length; i++) {
-						let fila = [
-							usuarios[i].cedula_cliente.toString(), 
-							usuarios[i].direccion_cliente, 
-							usuarios[i].email_cliente, 
-							usuarios[i].nombre_cliente, 
-							usuarios[i].telefono_cliente
-						];
-
-					    table.rows().add(fila);
-					}
-				}
-			};
-			
-			xmlhttp.send();
-	});
 </script>
 
+<link href="style.css" rel="stylesheet" type="text/css" />
+<!-- font awesome-->
+<script src="https://kit.fontawesome.com/8e9e769e03.js"
+	crossorigin="anonymous">
+	
+</script>
 </head>
 
-<body class="sb-nav-fixed sb-sidenav-toggled">
-	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-		<!-- Navbar Brand-->
-		<a class="navbar-brand ps-3" href="index.html"><i
-			class="fas fa-fish"></i> Tienda Los Tiburones </a>
-		<!-- Sidebar Toggle-->
-		<button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
-			id="sidebarToggle" href="#!">
-			<i class="fas fa-bars fa-2x"></i>
-		</button>
-		<!-- Navbar Search-->
-		<form
-			class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-
-		</form>
-	</nav>
-
-
-	<div id="layoutSidenav_content">
-		<main>
-
-			<div w3-include-html="snippets/sidenav.html"></div>
-
-			<div
-				class="container-fluid px-4 animate__animated animate__bounceInLeft">
-				<h1 class="mt-4">Lista de clientes</h1>
-				<ol class="breadcrumb mb-4">
-					<li class="breadcrumb-item active">Muestra un listado de todos
-						los clientes que se encuentran registrados dentro de la plataforma</li>
-				</ol>
-				<div class="row">
-					<div class="col-xl-12 col-md-12">
-						<div class="card  text-black mb-4">
-
-							<div class="container">
-
-								<h1>
-									<i class="fas fa-cogs"></i> Operaciones
-								</h1>
-								<div class="row">
-									<div class="col-sm-2 col-md-2 me-2">
-
-										<button type="button" class="btn btn-success"
-											onclick="window.location.href='<%=request.getContextPath()%>/insertarcliente.jsp'">
-											<i class="fas fa-plus-circle"></i> Agregar cliente
-										</button>
-									</div>
-									<div class="col-sm-2 col-md-2 me-2">
-										<button type="button" class="btn btn-danger"
-											onclick="window.location.href='<%=request.getContextPath()%>/eliminarcliente.jsp'">
-											<i class="fas fa-trash"></i> Eliminar cliente
-										</button>
-									</div>
-									<div class="col-sm-2 col-md-2 me-4">
-										<button type="button" class="btn btn-warning"
-											onclick="window.location.href='<%=request.getContextPath()%>/actualizarcliente.jsp'">
-											<i class="fas fa-pen-alt"></i> Actualizar cliente
-										</button>
-									</div>
-									<div class="col-sm-2 col-md-2 me-2">
-										<button type="button" class="btn btn-primary"
-											onclick="window.location.href='<%=request.getContextPath()%>/buscarcliente.jsp'">
-											<i class="fas fa-search"></i> Buscar un cliente
-										</button>
-									</div>
-									<div class="col-sm-2 col-md-2 me-2">
-										<button type="button" class="btn btn-primary"
-											onclick="window.location.href='<%=request.getContextPath()%>/listaclientes.jsp'">
-											<i class="fas fa-search"></i> Listado completo
-										</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-xl-12">
-						<div class="card mb-4">
-							<div class="card-header text-white bg-dark">
-								<i class="fas fa-table"></i> Listado de clientes
-								</div>
-								<div class="card-body">
-									<table id="datatablesclients">
-										<thead>
-											<tr>
-												<th>Cedula</th>
-												<th>Dirección</th>
-												<th>Email</th>
-												<th>Nombre</th>
-												<th>Telefono</th>
-											</tr>
-										</thead>
-										<tfoot>
-											<tr>
-												<th>Cedula</th>
-												<th>Dirección</th>
-												<th>Email</th>
-												<th>Nombre</th>
-												<th>Telefono</th>
-											</tr>
-										</tfoot>
-										<tbody id="clientesinfo">
-
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container-fluid">
+			<div id="navbarNavDropdown">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link active"
+						aria-current="page" href="login.jsp"> <i
+							class="fas fa-house-user"></i> Inicio
+					</a></li>
+				</ul>
 			</div>
-		</main>
-
-		<div w3-include-html="snippets/footer.html"></div>
-
-
-	</div>
-
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
-		crossorigin="anonymous"></script>
-	<script src="js/scripts.js"></script>
+		</div>
+		<!-- <div class="col-4">
+	    <a class="navbar-brand links" href="login.jsp"><i class="fas fa-sign-in-alt"></i> Iniciar sesión</a>
+	    </div> -->
+	</nav>
+	<br>
+	<!-- <div class="d-grid gap-2 col-6 mx-auto">
+  <button class="btn btn-primary" type="button" onclick="window.location.href='/insertarusuario.jsp'">Agregar</button>
+  <button class="btn btn-primary" type="button">Actualizar</button>
+  <button class="btn btn-primary" type="button">Eliminar</button>
+</div> -->
 
 	<script>
-		includeHTML();
+		var baseurl = "http://localhost:8080/listarclientes";
+		function loadproveedores() {
+			var xmlhttp = new XMLHttpRequest();
+			xmlhttp.open("GET", baseurl, true);
+			xmlhttp.onreadystatechange = function() {
+				if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+					var proveedores = JSON.parse(xmlhttp.responseText);
+					var tbltop = "<table class='table table-dark table-striped'><tr><th>cedula_proveedor</th><th>ciudad_proveedor</th><th>direccion_proveedor</th><th>nombre_proveedor</th><th>telefono_proveedor</th></tr>";
+					var main = "";
+					for (i = 0; i < proveedores.length; i++) {
+						main += "<tr><td>" + proveedores[i].cedula_cliente
+								+ "</td><td>" + proveedores[i].direccion_cliente
+								+ "</td><td>"
+								+ proveedores[i].nombre_cliente
+								+ "</td><td>" + proveedores[i].telefono_cliente
+								+ "</td><td>"
+								+ proveedores[i].correo_cliente
+								+ "</td></tr>";
+					}
+					var tblbottom = "</table>";
+					var tbl = tbltop + main + tblbottom;
+					document.getElementById("proveedoresinfo").innerHTML = tbl;
+				}
+			};
+			xmlhttp.send();
+		}
+		window.onload = function() {
+			loadproveedores();
+		}
 	</script>
+	<center>
+		<h1>
+			<i class="fas fa-list-ol"></i> Tabla de Clientes
+		</h1>
+	</center>
+	<div class="container">
+		<div class="row">
+			<!--  Aqui es donde se autogenera la tabla basado en el script -->
+			<div class="col align-self-center" id="proveedoresinfo"></div>
 
-	<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"
-		crossorigin="anonymous"></script>
-
+		</div>
+	</div>
 </body>
 </html>

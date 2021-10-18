@@ -51,7 +51,7 @@
 </div> -->
 
 	<script>
-		var baseurl = 'http://localhost:8080/listarclientesreportes?proveedor='+user, false;
+		/* var baseurl = "http://localhost:8080/listarclientesreportes";
 		function loadproveedores() {
 			var xmlhttp = new XMLHttpRequest();
 			xmlhttp.open("GET", baseurl, true);
@@ -80,6 +80,41 @@
 		window.onload = function() {
 			loadproveedores();
 		}
+		 */
+
+		function enviar() {
+
+			var req = new XMLHttpRequest();
+			var coincidencia = false;
+			var user = document.getElementById("usersearch").value;
+			req.open('GET', 'http://localhost:8080/listarreportes?cliente='
+					+ user, false);
+			req.send(null);
+			var proveedores = null;
+			if (req.status == 200)
+				var proveedores = JSON.parse(req.responseText);
+			console.log(JSON.parse(req.responseText));
+			var tbltop = "<table class='table table-dark table-striped'><tr><th>codigo_venta</th><th>cedula_usuario</th><th>cedula_cliente</th><th>iva_venta</th><th>total_venta</th><th>valor_venta</th></tr>";
+			var main = "";
+			for (i = 0; i < proveedores.length; i++) {
+				main += "<tr><td>" + proveedores[i].codigo_venta + "</td><td>"
+						+ proveedores[i].cedula_usuario + "</td><td>"
+						+ proveedores[i].cedula_cliente + "</td><td>"
+						+ proveedores[i].iva_venta + "</td><td>"
+						+ proveedores[i].total_venta + "</td><td>"
+						+ proveedores[i].valor_venta + "</td></tr>";
+			}
+			var tblbottom = "</table>";
+			var tbl = tbltop + main + tblbottom;
+			document.getElementById("proveedoresinfo").innerHTML = tbl;
+
+			document.getElementById("usersearch").value = "";
+
+		}
+	</script>
+
+
+
 	</script>
 	<center>
 		<h1>
@@ -98,9 +133,12 @@
 	<div class="input-group">
 		<span class="input-group-text" id="basic-addon1"><i
 			class="fas fa-id-card-alt"></i></span> <input type="text"
-			class="form-control" placeholder="cedula proveedor"
+			class="form-control" placeholder="cedula cliente"
 			aria-label="Username" aria-describedby="basic-addon1" required
 			id="usersearch">
 	</div>
+	<button type="button" class="btn btn-warning" onclick="enviar()">
+		<i class="fas fa-search"></i> BUSCAR
+	</button>
 </body>
 </html>

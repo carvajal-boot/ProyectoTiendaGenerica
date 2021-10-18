@@ -64,7 +64,7 @@
 					     
 					<ul class="list-group list-group-flush">
 						<button type="button" class="btn btn-success"
-							onclick="window.location.href='/listausuarios.jsp'">
+							onclick="window.location.href='/listausuarios3.jsp'">
 							<i class="fas fa-user-plus"></i> Listado de usuarios
 						</button>
 
@@ -74,7 +74,7 @@
 						</button>
 
 						<button type="button" class="btn btn-primary"
-							onclick="window.location.href='/listaventas.jsp.jsp'">
+							onclick="window.location.href='/totalventas.jsp'">
 							<i class="fas fa-search"></i> Listado de ventas
 						</button>
 
