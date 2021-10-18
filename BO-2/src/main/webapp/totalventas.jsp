@@ -34,7 +34,7 @@
 			<div id="navbarNavDropdown">
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="login.jsp"> <i
+						aria-current="page" href="home.jsp"> <i
 							class="fas fa-house-user"></i> Inicio
 					</a></li>
 				</ul>
