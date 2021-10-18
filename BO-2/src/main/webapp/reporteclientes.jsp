@@ -67,17 +67,17 @@
 					<ul class="list-group list-group-flush">
 						<button type="button" class="btn btn-success"
 							onclick="window.location.href='/listausuarios.jsp'">
-							<i class="fas fa-user-plus"></i> Listado de usuarios
+							<i class="fas fa-users"></i> Listado de usuarios
 						</button>
 
 						<button type="button" class="btn btn-warning"
 							onclick="window.location.href='/listacliente.jsp'">
-							<i class="fas fa-redo"></i> Listado de clientes
+							<i class="fas fa-list-ol"></i> Listado de clientes
 						</button>
 
 						<button type="button" class="btn btn-primary"
 							onclick="window.location.href='/totalventas.jsp'">
-							<i class="fas fa-search"></i> Listado de ventas por cliente
+							<i class="fas fa-cash-register"></i> Listado de ventas por cliente
 						</button>
 
 </ul>
