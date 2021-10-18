@@ -19,6 +19,8 @@
 	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
 	crossorigin="anonymous">
 	
+<link href="Style/listacliente.css" rel="stylesheet" type="text/css" />
+	
 </script>
 
 
@@ -69,7 +71,7 @@
 						</button>
 
 						<button type="button" class="btn btn-warning"
-							onclick="window.location.href='/listacliente.jsp'">
+							onclick="window.location.href='/listacliente3.jsp'">
 							<i class="fas fa-redo"></i> Listado de clientes
 						</button>
 

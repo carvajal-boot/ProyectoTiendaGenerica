@@ -88,7 +88,7 @@
 							<i class="far fa-trash-alt"></i> Eliminar
 						</button>
 						<button type="button" class="btn btn-secondary"
-						onclick="window.location.href='/listausuarios.jsp'">
+						onclick="window.location.href='/listausuarios3.jsp'">
 							<i class="fas fa-list-ol"></i> Enlistar
 						</button>
 
@@ -131,7 +131,8 @@
 							onclick="window.location.href='/eliminarcliente.jsp'">
 							<i class="far fa-trash-alt"></i> Eliminar
 						</button>
-						<button type="button" class="btn btn-secondary">
+						<button type="button" class="btn btn-secondary"
+						onclick="window.location.href='/listacliente3.jsp'">
 							<i class="fas fa-list-ol"></i> Enlistar
 						</button>
 

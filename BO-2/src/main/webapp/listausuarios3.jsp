@@ -23,6 +23,8 @@
 	integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
 	crossorigin="anonymous">
 	
+	<link href="Style/listausuarios.css" rel="stylesheet" type="text/css" />
+	
 <h5>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container-fluid">
