@@ -110,27 +110,18 @@
 			document.getElementById("proveedoresinfo").innerHTML = tbl;
 
 			document.getElementById("usersearch").value = "";
-
-		}
-
-		function total() {
-
-			var req = new XMLHttpRequest();
-			var coincidencia = false;
-			var user = document.getElementById("usersearch").value;
-			req.open('GET', 'http://localhost:8080/listarreportes?cliente='
-					+ user, false);
-			req.send(null);
-			var proveedores = null;
-			if (req.status == 200)
-				var proveedores = JSON.parse(req.responseText);
-			console.log(JSON.parse(req.responseText));
-
-			for (var i = 0; i <= proveedores.length; i++) {
+			var suma = 0.0;
+			for (var i = 0; i < proveedores.length; i++) {
 				numero = proveedores[i].valor_venta;
 				suma += numero;
 			}
-			document.getElementById("nit_cliente").value = proveedores[0].valor_venta;
+			document.getElementById("nit_cliente").value = suma;
+
+		/* } */
+
+		/* function total() { */
+
+			
 		}
 	</script>
 
@@ -162,7 +153,7 @@
 		<i class="fas fa-search"></i> BUSCAR
 	</button>
 	<div class="input-group">
-		<span class="input-group-text" id="usersearch"><i
+		<span class="input-group-text" id="nn"><i
 			class="fas fa-id-card-alt"></i></span> <input type="text"
 			class="form-control" placeholder="Total" aria-label="Username"
 			aria-describedby="basic-addon1" required id="nit_cliente"
