@@ -95,7 +95,7 @@
 										<div class="input-group input-group-sm mb-3">
 											<span class="input-group-text"><i id="checkusuario"
 												class="fas fa-times text-danger"></i></span> <span
-												class="input-group-text" id="basic-addon1">Username
+												class="input-group-text" id="basic-addon1">Cedula
 												usuario</span> <input type="text" class="form-control"
 												id="cedula_usuario" oninput="traerNombreUsuario()">
 										</div>
@@ -431,7 +431,7 @@
 
 				console.log(producto2);
 				document.getElementById("nombre_producto2").value = producto2[0].nombre_producto;
-				precio1 = parseFloat(producto2[0].precio_venta);
+				precio2 = parseFloat(producto2[0].precio_venta);
 				console.log("Precio2: " + precio2)
 				icono.classList.replace("text-danger", "text-success");
 				icono.classList.replace("fa-times", "fa-check");
@@ -460,7 +460,7 @@
 
 				console.log(producto3);
 				document.getElementById("nombre_producto3").value = producto3[0].nombre_producto;
-				precio1 = parseFloat(producto3[0].precio_venta);
+				precio3 = parseFloat(producto3[0].precio_venta);
 				console.log("Precio3: " + precio3)
 				icono.classList.replace("text-danger", "text-success");
 				icono.classList.replace("fa-times", "fa-check");
