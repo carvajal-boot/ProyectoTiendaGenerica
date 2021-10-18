@@ -66,12 +66,12 @@
 					     
 					<ul class="list-group list-group-flush">
 						<button type="button" class="btn btn-success"
-							onclick="window.location.href='/listausuarios3.jsp'">
+							onclick="window.location.href='/listausuarios.jsp'">
 							<i class="fas fa-user-plus"></i> Listado de usuarios
 						</button>
 
 						<button type="button" class="btn btn-warning"
-							onclick="window.location.href='/listacliente3.jsp'">
+							onclick="window.location.href='/listacliente.jsp'">
 							<i class="fas fa-redo"></i> Listado de clientes
 						</button>
 

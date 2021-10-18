@@ -8,7 +8,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
 <title>repl.it</title>
-<link href="style.css" rel="stylesheet" type="text/css" />
+<link href="Style/listacliente.css" rel="stylesheet" type="text/css" />
 <!--Llamando librerias y estilos Boostrap-->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -22,7 +22,7 @@
 	
 </script>
 
-<link href="style.css" rel="stylesheet" type="text/css" />
+<link href="Style/listacliente.css" rel="stylesheet" type="text/css" />
 <!-- font awesome-->
 <script src="https://kit.fontawesome.com/8e9e769e03.js"
 	crossorigin="anonymous">
@@ -85,7 +85,7 @@
 		}
 	</script>
 	<center>
-		<h1>
+		<h1 class="title">
 			<i class="fas fa-list-ol"></i> Tabla de Clientes
 		</h1>
 	</center>
