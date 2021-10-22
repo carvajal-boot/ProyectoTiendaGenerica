@@ -143,7 +143,7 @@
 			var coincidencia = false;
 			var user = document.getElementById("usersearch").value;
 			//req.open('GET','http://localhost:8080/consultarcliente?client='+ user, false);
-			req.open('GET',baseUrl+'/consultarcliente?cedula='+ user, false);
+			req.open('GET',baseUrl+'/consultarcliente?client='+ user, false);
 			req.send(null);
 			var usuario = null;
 			if (req.status == 200)

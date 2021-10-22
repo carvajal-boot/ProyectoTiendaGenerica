@@ -94,10 +94,14 @@
 
 	<script>
 		function eliminar() {
+			
+			var getUrl = window.location;
+			var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
 			var y = document.getElementById("cedula_proveedor").value;
 			var req = new XMLHttpRequest();
 			var coincidencia = false;
-			req.open('GET', 'http://localhost:8080/listarproveedores', false);
+			//req.open('GET', 'http://localhost:8080/listarproveedores', false);
+			req.open('GET', baseUrl+'/listarproveedores', false);
 			req.send(null);
 			var proveedores = null;
 			if (req.status == 200)
@@ -119,9 +123,8 @@
 				var cedula = document.getElementById("cedula_proveedor").value;
 
 				var xhr = new XMLHttpRequest();
-				xhr.open("DELETE",
-						"http://localhost:8080/eliminarproveedor?cedula_proveedor="
-								+ cedula);
+				//xhr.open("DELETE","http://localhost:8080/eliminarproveedor?cedula_proveedor="+ cedula);
+				xhr.open("DELETE",baseUrl+"/eliminarproveedor?cedula_proveedor="+ cedula);
 
 				var element = document.getElementById("error");
 				element.classList.add("visually-hidden");
