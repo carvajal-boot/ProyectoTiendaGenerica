@@ -22,9 +22,9 @@
 	href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
 	integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
 	crossorigin="anonymous">
-	
-	<link href="Style/listausuarios.css" rel="stylesheet" type="text/css" />
-	
+
+<link href="Style/listausuarios.css" rel="stylesheet" type="text/css" />
+
 <h5>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container-fluid">
@@ -37,17 +37,20 @@
 				</ul>
 			</div>
 		</div>
-		</h5>
-		
+</h5>
+
 
 <link href="style.css" rel="stylesheet" type="text/css" />
 
 
 <script>
-	var baseurl = "http://localhost:8080/listarusuarios";
+	var getUrl = window.location;
+	var baseUrl = getUrl.protocol + "//" + getUrl.host + "/"
+			+ getUrl.pathname.split('/')[1];
+	var baseurld = baseUrl+"/listarusuarios";
 	function loadusuarios() {
 		var xmlhttp = new XMLHttpRequest();
-		xmlhttp.open("GET", baseurl, true);
+		xmlhttp.open("GET", baseurld, true);
 		xmlhttp.onreadystatechange = function() {
 			if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
 				var usuarios = JSON.parse(xmlhttp.responseText);
@@ -76,23 +79,23 @@
 
 
 <body>
-		<!-- contenido  -->
+	<!-- contenido  -->
 	<center>
-	<div style="padding-left: 5px;">
-	
-		<h1 class="title"><i class="fas fa-list-ol"></i> Tabla de usuarios</h1>
+		<div style="padding-left: 5px;">
+
+			<h1 class="title">
+				<i class="fas fa-list-ol"></i> Tabla de usuarios
+			</h1>
 			<div class="container">
 				<div class="row">
 					<!--  Aqui es donde se autogenera la tabla basado en el script -->
-					<div class="col align-self-center" id="usuariosinfo">
-					
-					</div>
-	
+					<div class="col align-self-center" id="usuariosinfo"></div>
+
 				</div>
 			</div>
 	</center>
-	
-		
+
+
 	</div>
 
 
