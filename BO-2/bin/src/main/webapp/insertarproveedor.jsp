@@ -8,11 +8,10 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
-<title>Sofía Castañeda</title>
+<title>SofÃ­a CastaÃ±eda</title>
 
 <!-- LLamando librerias y estilos de Bootstarp -->
-<link href="Style/actualizarproveedor.css" rel="stylesheet"
-	type="text/css" />
+<link href="Style/insertarproveedor.css" rel="stylesheet" type="text/css" />
 
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -20,7 +19,7 @@
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
 
-<link href="Style/actualizarproveedor.css" rel="stylesheet" type="text/css" />
+<link href="Style/insertarproveedor.css" rel="stylesheet" type="text/css" />
 
 <!-- font awesome -->
 <link rel="stylesheet"
@@ -34,19 +33,19 @@
 
 <body>
 
-	<h5>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<!-- Barra de NavegaciÃ³n -->
+	<!--nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container-fluid">
 			<div id="navbarNavDropdown">
 				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="home.jsp"> <i
-							class="fas fa-house-user"></i> Inicio
-					</a></li>
-				</ul>
-			</div>
-		</div>
-		</h5>
+					<li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="index.html"> <i class="fas fa-home fa 5x"></i> Inicio</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav-->
+
 
 
 	<div class="container p-4">
@@ -57,14 +56,13 @@
 
 						<br> <i class="fas fa-user-circle titulo fa-4x"></i> <br>
 						<br>
-						<h1 class="titulo">SU TIENDA GENÉRICA</h1>
-						<h4 class="titulo">Registre los datos del proveedor</h4>
+						<h1 class="titulo">SU TIENDA GENERICA</h1>
+						<h4 class="titulo">Registre los datos del nuevo proveedor</h4>
 					</center>
 					<br>
 					<center>
 						<br>
 					</center>
-
 					<center>
 						<div class="input-group">
 							<span class="input-group-text" id="basic-addon1"><i
@@ -83,15 +81,8 @@
 
 						<div class="input-group">
 							<span class="input-group-text" id="basic-addon1"><i
-								class="fas fa-envelope"></i></i></span> <input type="text"
-								class="form-control" placeholder="Ciudad" aria-label="Username"
-								aria-describedby="basic-addon1" required id="ciudad_proveedor">
-						</div>
-
-						<div class="input-group">
-							<span class="input-group-text" id="basic-addon1"><i
-								class="fas fa-map-marker-alt"></i></i></span> <input type="text"
-								class="form-control" placeholder="Dirección"
+								class="fas fa-map-marker-alt"></i></span> <input type="text"
+								class="form-control" placeholder="Direccion"
 								aria-label="Username" aria-describedby="basic-addon1" required
 								id="direccion_proveedor">
 						</div>
@@ -99,44 +90,45 @@
 						<div class="input-group">
 							<span class="input-group-text" id="basic-addon1"><i
 								class="fas fa-mobile-alt"></i></span> <input type="text"
-								class="form-control" placeholder="Contacto"
+								class="form-control" placeholder="Telefono"
 								aria-label="Username" aria-describedby="basic-addon1" required
 								id="telefono_proveedor">
 						</div>
+
+						<div class="input-group">
+							<span class="input-group-text" id="basic-addon1"><i
+								class="fas fa-globe-americas"></i></span> <input type="text"
+								class="form-control" placeholder="Ciudad" aria-label="Username"
+								aria-describedby="basic-addon1" required id="ciudad_proveedor">
+						</div>
 						<br>
-						<div class="d-grid gap-2 col-3 mx-auto">
-							<button type="button" class="btn btn-dark" onclick="actualizar()">
-								</i> <i class="fas fa-sync"></i> ACTUALIZAR
+						<div class="d-grid gap-2 col-4 mx-auto">
+							<button class="btn btn-dark" type="button"
+								onclick="enviarproveedor()">
+								<i class="fas fa-user-plus"></i> REGISTRAR
 							</button>
 							<br>
+						</div>
+
+						<div id="error" class="alert alert-danger visually-hidden"
+							role="alert">Error al crear el usuario, verifique que no
+							exista un usuario con la cedula y usuario dados</div>
+
+						<div id="correcto" class="alert alert-success visually-hidden"
+							role="alert">Usuario creado con exito</div>
 					</center>
-					<center>
-					<div id="error" class="alert alert-danger visually-hidden"
-						role="alert">Error al actualizar el proveedor, verifique que no
-						exista un proveedor con los datos dados</div>
-
-					<div id="correcto" class="alert alert-success visually-hidden"
-						role="alert">Proveedor actualizado con exito</div>
-						</center>
 				</div>
-
 			</div>
 		</div>
 	</div>
-	</div>
-
 
 	<script>
-		function actualizar() {
-			
-			var getUrl = window.location;
-			var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+		function enviarproveedor() {
 			var x = document.getElementById("nombre_proveedor").value;
 			var y = document.getElementById("cedula_proveedor").value;
 			var req = new XMLHttpRequest();
 			var coincidencia = false;
-			//req.open('GET', 'http://localhost:8080/listarproveedores', false);
-			req.open('GET', baseUrl+'/listarproveedores', false);
+			req.open('GET', 'http://localhost:8080/listarproveedores', false);
 			req.send(null);
 			var proveedores = null;
 			if (req.status == 200)
@@ -145,22 +137,22 @@
 
 			for (i = 0; i < proveedores.length; i++) {
 				console.log(proveedores[i].nombre_proveedor);
-				console.log(proveedores[i].cedula_proveedor);
-				if (proveedores[i].nombre_proveedor === x) {
-					console.log(proveedores[i].cliente + " " + x);
+				console.log(proveedores[i].nombre_proveedor);
+				if (proveedores[i].cedula_proveedor == x) {
+					console.log(proveedores[i].cedula_proveedor + " " + x);
 					coincidencia = true
 					break;
 				}
 
-				if (proveedores[i].cedula_proveedor == y) {
-					console.log(proveedores[i].cedula_proveedor + " " + y);
+				if (proveedores[i].nombre_proveedor === y) {
+					console.log(proveedores[i].nombre_proveedor + " " + y);
 					coincidencia = true
 					break;
 				}
 			}
 			console.log(coincidencia);
 
-			if (coincidencia != false) {
+			if (coincidencia == false) {
 				var formData = new FormData();
 				formData.append("cedula_proveedor", document
 						.getElementById("cedula_proveedor").value);
@@ -173,8 +165,7 @@
 				formData.append("telefono_proveedor", document
 						.getElementById("telefono_proveedor").value);
 				var xhr = new XMLHttpRequest();
-				//xhr.open("PUT", "http://localhost:8080/actualizarproveedor");
-				xhr.open("PUT", baseUrl+"/actualizarproveedor");
+				xhr.open("POST", "http://localhost:8080/registrarproveedor");
 
 				var element = document.getElementById("error");
 				element.classList.add("visually-hidden");
@@ -198,11 +189,8 @@
 				document.getElementById("direccion_proveedor").value = "";
 				document.getElementById("nombre_proveedor").value = "";
 				document.getElementById("telefono_proveedor").value = "";
-
 			}
 		}
 	</script>
-
-
 </body>
 </html>

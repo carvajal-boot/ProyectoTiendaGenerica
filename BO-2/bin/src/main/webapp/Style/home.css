@@ -1,0 +1,23 @@
+.card{
+  transition: transform .5s;
+}
+.card:hover{
+  -webkit-transform: scale(1.2);
+	-moz-transform: scale(1.2);
+	-ms-transform: scale(1.2);
+	-o-transform: scale(1.2);
+	transform: scale(1.2);
+}
+
+.inner{
+  overflow: hidden;
+}
+
+.inner img{
+  transform: all 1.2s ease;
+}
+
+.inner:hover img{
+  transition: transform .5s;
+  transform: scale(1.2);
+}

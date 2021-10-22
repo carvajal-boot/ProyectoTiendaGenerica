@@ -1,0 +1,11 @@
+@charset "ISO-8859-1";
+
+body{
+  background-image:  url("https://cdn.pixabay.com/photo/2018/09/26/21/24/corn-3705687_960_720.jpg");
+  background-size: cover;
+
+  }
+
+.title {
+  color: white;
+}

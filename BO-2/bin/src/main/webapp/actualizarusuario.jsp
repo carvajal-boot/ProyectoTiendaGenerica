@@ -124,15 +124,11 @@
 
 	<script>
 		function actualizar() {
-			
-			var getUrl = window.location;
-			var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
 			var x = document.getElementById("usuario").value;
 			var y = document.getElementById("cedula_usuario").value;
 			var req = new XMLHttpRequest();
 			var coincidencia = false;
-			//req.open('GET', 'http://localhost:8080/listarusuarios', false);
-			req.open('GET', baseUrl+'/listarusuarios', false);
+			req.open('GET', 'http://localhost:8080/listarusuarios', false);
 			req.send(null);
 			var usuarios = null;
 			if (req.status == 200)
@@ -169,8 +165,7 @@
 				formData.append("usuario",
 						document.getElementById("usuario").value);
 				var xhr = new XMLHttpRequest();
-				//xhr.open("PUT", "http://localhost:8080/actualizarusuarios");
-				xhr.open("PUT", baseUrl+"/actualizarusuarios");
+				xhr.open("PUT", "http://localhost:8080/actualizarusuarios");
 
 				var element = document.getElementById("error");
 				element.classList.add("visually-hidden");

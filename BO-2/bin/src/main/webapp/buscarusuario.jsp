@@ -11,7 +11,7 @@
 <title>Sofía Castañeda</title>
 
 <!-- LLamando librerias y estilos de Bootstarp -->
-<link href="Style/actualizarusuario.css" rel="stylesheet" type="text/css" />
+<link href="Style/buscarusuario.css" rel="stylesheet" type="text/css" />
 
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -19,7 +19,7 @@
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
 
-<link href="Style/actualizarusuario.css" rel="stylesheet" type="text/css" />
+<link href="Style/buscarusuario.css" rel="stylesheet" type="text/css" />
 
 <!-- font awesome -->
 <link rel="stylesheet"
@@ -46,7 +46,7 @@
 			</div>
 		</div>
 		</h5>
-		
+
 	<div class="container p-4">
 		<div class="row justify-content-end">
 			<div class="col-10">
@@ -56,7 +56,15 @@
 						<br>
 						<i class="fas fa-user-circle titulo fa-4x"></i> <br> <br>
 						<h1 class="titulo">SU TIENDA GENÉRICA</h1>
-						<h4 class="titulo">Registre los datos del nuevo usuario</h4>
+						<h4 class="titulo">Ingrese usuario a buscar</h4>
+						<br>
+						<div class="input-group">
+							<span class="input-group-text" id="basic-addon1"><i
+								class="far fa-user"></i></i></span> <input type="text" class="form-control"
+								placeholder="Cedula" aria-label="Username"
+								aria-describedby="basic-addon1" required id="usersearch">
+						</div>
+
 					</center>
 					<br>
 					<center>
@@ -69,7 +77,8 @@
 							<span class="input-group-text" id="basic-addon1"><i
 								class="fas fa-id-card-alt"></i></span> <input type="text"
 								class="form-control" placeholder="Cédula" aria-label="Username"
-								aria-describedby="basic-addon1" required id="cedula_usuario">
+								aria-describedby="basic-addon1" required id="cedula_usuario"
+								disabled="disabled">
 						</div>
 
 						<div class="input-group">
@@ -77,21 +86,23 @@
 								class="far fa-user-circle"></i></span> <input type="text"
 								class="form-control" placeholder="Nombre Completo"
 								aria-label="Username" aria-describedby="basic-addon1" required
-								id="nombre_usuario">
+								id="nombre_usuario" disabled="disabled">
 						</div>
 
 						<div class="input-group">
 							<span class="input-group-text" id="basic-addon1"><i
 								class="fas fa-envelope"></i></i></span> <input type="text"
 								class="form-control" placeholder="Email" aria-label="Username"
-								aria-describedby="basic-addon1" required id="email_usuario">
+								aria-describedby="basic-addon1" required id="email_usuario"
+								disabled="disabled">
 						</div>
 
 						<div class="input-group">
 							<span class="input-group-text" id="basic-addon1"><i
 								class="far fa-user"></i></i></span> <input type="text" class="form-control"
 								placeholder="Username" aria-label="Username"
-								aria-describedby="basic-addon1" required id="usuario">
+								aria-describedby="basic-addon1" required id="usuario"
+								disabled="disabled">
 						</div>
 
 						<div class="input-group">
@@ -99,21 +110,21 @@
 								class="fas fa-unlock"></i></span> <input type="password"
 								class="form-control" placeholder="Password"
 								aria-label="Username" aria-describedby="basic-addon1" required
-								id="password">
+								id="password" disabled="disabled">
 						</div>
 						<br>
 						<div class="d-grid gap-2 col-4 mx-auto">
-							<button class="btn btn-warning" type="button"
-								onclick="actualizar()">
-								</i> <i class="fas fa-sync"></i> ACTUALIZAR
+							<button type="button" class="btn btn-primary" onclick="enviar()">
+								<i class="fas fa-search"></i> BUSCAR
 							</button>
 							<br>
+
 							<div id="error" class="alert alert-danger visually-hidden"
-								role="alert">Error al actualizar el usuario, verifique que
-								la cedula y usuario dados sean validos</div>
+								role="alert">Error al buscar el usuario, el usuario no
+								existe</div>
 
 							<div id="correcto" class="alert alert-success visually-hidden"
-								role="alert">Usuario actualizado con exito</div>
+								role="alert">Usuario encontrado con exito</div>
 					</center>
 				</div>
 			</div>
@@ -123,66 +134,35 @@
 
 
 	<script>
-		function actualizar() {
-			
-			var getUrl = window.location;
-			var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
-			var x = document.getElementById("usuario").value;
-			var y = document.getElementById("cedula_usuario").value;
+		function enviar() {
+
 			var req = new XMLHttpRequest();
 			var coincidencia = false;
-			//req.open('GET', 'http://localhost:8080/listarusuarios', false);
-			req.open('GET', baseUrl+'/listarusuarios', false);
+			var user = document.getElementById("usersearch").value;
+			req.open('GET', 'http://localhost:8080/consultarusuario?usuario='
+					+ user, false);
 			req.send(null);
-			var usuarios = null;
+			var usuario = null;
 			if (req.status == 200)
-				usuarios = JSON.parse(req.responseText);
+				usuario = JSON.parse(req.responseText);
 			console.log(JSON.parse(req.responseText));
 
-			for (i = 0; i < usuarios.length; i++) {
-				console.log(usuarios[i].usuario);
-				console.log(usuarios[i].cedula_usuario);
-				if (usuarios[i].usuario === x) {
-					console.log(usuarios[i].usuario + " " + x);
-					coincidencia = true
-					break;
-				}
+			var element = document.getElementById("error");
+			element.classList.add("visually-hidden");
+			var element2 = document.getElementById("correcto");
+			element2.classList.remove("visually-hidden");
 
-				if (usuarios[i].cedula_usuario == y) {
-					console.log(usuarios[i].cedula_usuario + " " + y);
-					coincidencia = true
-					break;
-				}
-			}
-			console.log(coincidencia);
+			console.log(usuario.toString());
 
-			if (coincidencia != false) {
-				var formData = new FormData();
-				formData.append("cedula_usuario", document
-						.getElementById("cedula_usuario").value);
-				formData.append("email_usuario", document
-						.getElementById("email_usuario").value);
-				formData.append("nombre_usuario", document
-						.getElementById("nombre_usuario").value);
-				formData.append("password",
-						document.getElementById("password").value);
-				formData.append("usuario",
-						document.getElementById("usuario").value);
-				var xhr = new XMLHttpRequest();
-				//xhr.open("PUT", "http://localhost:8080/actualizarusuarios");
-				xhr.open("PUT", baseUrl+"/actualizarusuarios");
+			if (cedula_usuario.toString() != "") {
 
-				var element = document.getElementById("error");
-				element.classList.add("visually-hidden");
-				var element2 = document.getElementById("correcto");
-				element2.classList.remove("visually-hidden");
+				document.getElementById("cedula_usuario").value = usuario[0].cedula_usuario;
+				document.getElementById("email_usuario").value = usuario[0].email_usuario;
+				document.getElementById("nombre_usuario").value = usuario[0].nombre_usuario;
+				document.getElementById("password").value = usuario[0].password;
+				document.getElementById("usuario").value = usuario[0].usuario;
 
-				document.getElementById("cedula_usuario").value = "";
-				document.getElementById("email_usuario").value = "";
-				document.getElementById("nombre_usuario").value = "";
-				document.getElementById("password").value = "";
-				document.getElementById("usuario").value = "";
-				xhr.send(formData);
+				document.getElementById("usersearch").value = "";
 
 			} else {
 				var element = document.getElementById("error");
