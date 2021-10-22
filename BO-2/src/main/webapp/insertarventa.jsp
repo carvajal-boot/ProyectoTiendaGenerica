@@ -557,7 +557,7 @@
 									continue;
 								} else {
 									var formData2 = new FormData();
-									//formData2.append("codigo_detalle_venta", );
+									//formData2.ap	pend("codigo_detalle_venta", );
 									formData2.append("cantidad_producto",
 											document.getElementById("cant"
 													+ i.toString()).value);
