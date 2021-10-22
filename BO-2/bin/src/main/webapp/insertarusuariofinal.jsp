@@ -1,6 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-
 <!DOCTYPE html>
 <html>
 
@@ -11,7 +8,7 @@
 <title>Sofía Castañeda</title>
 
 <!-- LLamando librerias y estilos de Bootstarp -->
-<link href="Style/actualizarusuario.css" rel="stylesheet" type="text/css" />
+<link href="Style/insertarusuario.css" rel="stylesheet" type="text/css" />
 
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -19,7 +16,7 @@
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
 
-<link href="Style/actualizarusuario.css" rel="stylesheet" type="text/css" />
+<link href="Style/insertarusuario.css" rel="stylesheet" type="text/css" />
 
 <!-- font awesome -->
 <link rel="stylesheet"
@@ -33,106 +30,113 @@
 
 <body>
 
-	<h5>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<!-- Barra de Navegación -->
+	<!--nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container-fluid">
 			<div id="navbarNavDropdown">
 				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="home.jsp"> <i
-							class="fas fa-house-user"></i> Inicio
-					</a></li>
-				</ul>
-			</div>
-		</div>
-		</h5>
-		
+					<li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="index.html"> <i class="fas fa-home fa 5x"></i> Inicio</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav-->
+
+
+
 	<div class="container p-4">
 		<div class="row justify-content-end">
 			<div class="col-10">
 				<div class="formulario">
 					<center>
 
-						<br>
+
 						<i class="fas fa-user-circle titulo fa-4x"></i> <br> <br>
 						<h1 class="titulo">SU TIENDA GENÉRICA</h1>
 						<h4 class="titulo">Registre los datos del nuevo usuario</h4>
 					</center>
 					<br>
 					<center>
-
-						<br> <br>
+						<br>
 					</center>
-
 					<center>
 						<div class="input-group">
 							<span class="input-group-text" id="basic-addon1"><i
 								class="fas fa-id-card-alt"></i></span> <input type="text"
-								class="form-control" placeholder="Cédula" aria-label="Username"
-								aria-describedby="basic-addon1" required id="cedula_usuario">
+								class="form-control" placeholder="Cédula" required
+								id="cedula_usuario" aria-label="Username"
+								aria-describedby="basic-addon1">
 						</div>
 
 						<div class="input-group">
 							<span class="input-group-text" id="basic-addon1"><i
 								class="far fa-user-circle"></i></span> <input type="text"
-								class="form-control" placeholder="Nombre Completo"
-								aria-label="Username" aria-describedby="basic-addon1" required
-								id="nombre_usuario">
+								class="form-control" placeholder="Nombre Completo" required
+								id="nombre_usuario" aria-label="Username"
+								aria-describedby="basic-addon1">
 						</div>
 
 						<div class="input-group">
 							<span class="input-group-text" id="basic-addon1"><i
-								class="fas fa-envelope"></i></i></span> <input type="text"
-								class="form-control" placeholder="Email" aria-label="Username"
-								aria-describedby="basic-addon1" required id="email_usuario">
+								class="fas fa-map-marker-alt"></i></span> <input type="text"
+								class="form-control" placeholder="Email usuario" required
+								id="email_usuario" aria-label="Username"
+								aria-describedby="basic-addon1">
 						</div>
 
 						<div class="input-group">
 							<span class="input-group-text" id="basic-addon1"><i
-								class="far fa-user"></i></i></span> <input type="text" class="form-control"
-								placeholder="Username" aria-label="Username"
-								aria-describedby="basic-addon1" required id="usuario">
+								class="fas fa-mobile-alt"></i></span> <input type="text"
+								class="form-control" placeholder="Usuario" required id="user"
+								aria-label="Username" aria-describedby="basic-addon1">
 						</div>
 
 						<div class="input-group">
 							<span class="input-group-text" id="basic-addon1"><i
-								class="fas fa-unlock"></i></span> <input type="password"
-								class="form-control" placeholder="Password"
-								aria-label="Username" aria-describedby="basic-addon1" required
-								id="password">
+								class="fas fa-globe-americas"></i></span> <input type="password"
+								class="form-control" placeholder="Password" required
+								id="password" aria-label="Username"
+								aria-describedby="basic-addon1">
 						</div>
 						<br>
-						<div class="d-grid gap-2 col-4 mx-auto">
-							<button class="btn btn-warning" type="button"
-								onclick="actualizar()">
-								</i> <i class="fas fa-sync"></i> ACTUALIZAR
+						<div class="d-grid gap-2 col-6 mx-auto">
+							<button class="btn btn-success" type="button" onclick="enviar()">
+								<i class="fas fa-user-plus"></i> REGISTRAR
 							</button>
 							<br>
-							<div id="error" class="alert alert-danger visually-hidden"
-								role="alert">Error al actualizar el usuario, verifique que
-								la cedula y usuario dados sean validos</div>
+						</div>
 
+						<center>
+							<div id="error" class="alert alert-danger visually-hidden"
+								role="alert">
+								Archivo no valido, verifique e intente nuevamente (Archivo CSV)
+								<i class="far fa-frown"></i>
+							</div>
+						</center>
+
+						<center>
 							<div id="correcto" class="alert alert-success visually-hidden"
-								role="alert">Usuario actualizado con exito</div>
+								role="alert">
+								Archivo cargado con exito <i class="far fa-laugh-wink"></i>
+							</div>
+						</center>
 					</center>
 				</div>
 			</div>
 		</div>
 	</div>
-	</div>
 
 
 	<script>
-		function actualizar() {
-			
-			var getUrl = window.location;
-			var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
-			var x = document.getElementById("usuario").value;
+		/* Usuarios */
+
+		function enviar() {
+			var x = document.getElementById("user").value;
 			var y = document.getElementById("cedula_usuario").value;
 			var req = new XMLHttpRequest();
 			var coincidencia = false;
-			//req.open('GET', 'http://localhost:8080/listarusuarios', false);
-			req.open('GET', baseUrl+'/listarusuarios', false);
+			req.open('GET', 'http://localhost:8080/listarusuarios', false);
 			req.send(null);
 			var usuarios = null;
 			if (req.status == 200)
@@ -148,7 +152,7 @@
 					break;
 				}
 
-				if (usuarios[i].cedula_usuario == y) {
+				if (usuarios[i].cedula_usuario === y) {
 					console.log(usuarios[i].cedula_usuario + " " + y);
 					coincidencia = true
 					break;
@@ -156,7 +160,7 @@
 			}
 			console.log(coincidencia);
 
-			if (coincidencia != false) {
+			if (coincidencia == false) {
 				var formData = new FormData();
 				formData.append("cedula_usuario", document
 						.getElementById("cedula_usuario").value);
@@ -167,10 +171,9 @@
 				formData.append("password",
 						document.getElementById("password").value);
 				formData.append("usuario",
-						document.getElementById("usuario").value);
+						document.getElementById("user").value);
 				var xhr = new XMLHttpRequest();
-				//xhr.open("PUT", "http://localhost:8080/actualizarusuarios");
-				xhr.open("PUT", baseUrl+"/actualizarusuarios");
+				xhr.open("POST", "http://localhost:8080/registrarusuario");
 
 				var element = document.getElementById("error");
 				element.classList.add("visually-hidden");
@@ -181,7 +184,7 @@
 				document.getElementById("email_usuario").value = "";
 				document.getElementById("nombre_usuario").value = "";
 				document.getElementById("password").value = "";
-				document.getElementById("usuario").value = "";
+				document.getElementById("user").value = "";
 				xhr.send(formData);
 
 			} else {
@@ -193,10 +196,12 @@
 				document.getElementById("email_usuario").value = "";
 				document.getElementById("nombre_usuario").value = "";
 				document.getElementById("password").value = "";
-				document.getElementById("usuario").value = "";
+				document.getElementById("user").value = "";
 			}
 		}
 	</script>
+
+
 
 
 </body>

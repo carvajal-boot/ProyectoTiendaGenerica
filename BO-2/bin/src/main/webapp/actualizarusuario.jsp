@@ -1,4 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -8,7 +11,7 @@
 <title>Sofía Castañeda</title>
 
 <!-- LLamando librerias y estilos de Bootstarp -->
-<link href="Style/actualizarcliente.css" rel="stylesheet" type="text/css" />
+<link href="Style/actualizarusuario.css" rel="stylesheet" type="text/css" />
 
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -16,7 +19,7 @@
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
 
-<link href="Style/actualizarcliente.css" rel="stylesheet" type="text/css" />
+<link href="Style/actualizarusuario.css" rel="stylesheet" type="text/css" />
 
 <!-- font awesome -->
 <link rel="stylesheet"
@@ -43,22 +46,22 @@
 			</div>
 		</div>
 		</h5>
-
-
+		
 	<div class="container p-4">
 		<div class="row justify-content-end">
 			<div class="col-10">
 				<div class="formulario">
 					<center>
 
-						<br> <i class="fas fa-user-circle titulo fa-4x"></i> <br>
 						<br>
+						<i class="fas fa-user-circle titulo fa-4x"></i> <br> <br>
 						<h1 class="titulo">SU TIENDA GENÉRICA</h1>
-						<h4 class="titulo">Registre los datos del cliente</h4>
+						<h4 class="titulo">Registre los datos del nuevo usuario</h4>
 					</center>
 					<br>
 					<center>
-						<br>
+
+						<br> <br>
 					</center>
 
 					<center>
@@ -66,7 +69,7 @@
 							<span class="input-group-text" id="basic-addon1"><i
 								class="fas fa-id-card-alt"></i></span> <input type="text"
 								class="form-control" placeholder="Cédula" aria-label="Username"
-								aria-describedby="basic-addon1" required id="cedula_cliente">
+								aria-describedby="basic-addon1" required id="cedula_usuario">
 						</div>
 
 						<div class="input-group">
@@ -74,40 +77,39 @@
 								class="far fa-user-circle"></i></span> <input type="text"
 								class="form-control" placeholder="Nombre Completo"
 								aria-label="Username" aria-describedby="basic-addon1" required
-								id="nombre_cliente">
+								id="nombre_usuario">
 						</div>
 
 						<div class="input-group">
 							<span class="input-group-text" id="basic-addon1"><i
 								class="fas fa-envelope"></i></i></span> <input type="text"
 								class="form-control" placeholder="Email" aria-label="Username"
-								aria-describedby="basic-addon1" required id="correo_cliente">
+								aria-describedby="basic-addon1" required id="email_usuario">
 						</div>
 
 						<div class="input-group">
 							<span class="input-group-text" id="basic-addon1"><i
-								class="fas fa-map-marker-alt"></i></i></span> <input type="text"
-								class="form-control" placeholder="Dirección"
-								aria-label="Username" aria-describedby="basic-addon1" required
-								id="direccion_cliente">
+								class="far fa-user"></i></i></span> <input type="text" class="form-control"
+								placeholder="Username" aria-label="Username"
+								aria-describedby="basic-addon1" required id="usuario">
 						</div>
 
 						<div class="input-group">
 							<span class="input-group-text" id="basic-addon1"><i
-								class="fas fa-mobile-alt"></i></span> <input type="password"
-								class="form-control" placeholder="Contacto"
+								class="fas fa-unlock"></i></span> <input type="password"
+								class="form-control" placeholder="Password"
 								aria-label="Username" aria-describedby="basic-addon1" required
-								id="telefono_cliente">
+								id="password">
 						</div>
 						<br>
-						<div class="d-grid gap-2 col-3 mx-auto">
-							<button type="button" class="btn btn-outline-info"
+						<div class="d-grid gap-2 col-4 mx-auto">
+							<button class="btn btn-warning" type="button"
 								onclick="actualizar()">
 								</i> <i class="fas fa-sync"></i> ACTUALIZAR
 							</button>
 							<br>
 							<div id="error" class="alert alert-danger visually-hidden"
-								role="alert">Error al actualizar el cliente, verifique que
+								role="alert">Error al actualizar el usuario, verifique que
 								la cedula y usuario dados sean validos</div>
 
 							<div id="correcto" class="alert alert-success visually-hidden"
@@ -122,33 +124,28 @@
 
 	<script>
 		function actualizar() {
-			// url aws
-			var getUrl = window.location;
-			var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];		
-			
-			var x = document.getElementById("nombre_cliente").value;
-			var y = document.getElementById("cedula_cliente").value;
+			var x = document.getElementById("usuario").value;
+			var y = document.getElementById("cedula_usuario").value;
 			var req = new XMLHttpRequest();
 			var coincidencia = false;
-			//req.open('GET', 'http://localhost:8080/listarclientes', false);
-			req.open('GET', baseUrl+'/listarclientes', false);
+			req.open('GET', 'http://localhost:8080/listarusuarios', false);
 			req.send(null);
-			var clientes = null;
+			var usuarios = null;
 			if (req.status == 200)
-				clientes = JSON.parse(req.responseText);
+				usuarios = JSON.parse(req.responseText);
 			console.log(JSON.parse(req.responseText));
 
-			for (i = 0; i < clientes.length; i++) {
-				console.log(clientes[i].nombre_cliente);
-				console.log(clientes[i].cedula_cliente);
-				if (clientes[i].nombre_cliente === x) {
-					console.log(clientes[i].cliente + " " + x);
+			for (i = 0; i < usuarios.length; i++) {
+				console.log(usuarios[i].usuario);
+				console.log(usuarios[i].cedula_usuario);
+				if (usuarios[i].usuario === x) {
+					console.log(usuarios[i].usuario + " " + x);
 					coincidencia = true
 					break;
 				}
 
-				if (clientes[i].cedula_cliente == y) {
-					console.log(clientes[i].cedula_cliente + " " + y);
+				if (usuarios[i].cedula_usuario == y) {
+					console.log(usuarios[i].cedula_usuario + " " + y);
 					coincidencia = true
 					break;
 				}
@@ -157,31 +154,29 @@
 
 			if (coincidencia != false) {
 				var formData = new FormData();
-				formData.append("cedula_cliente", document
-						.getElementById("cedula_cliente").value);
-				formData.append("direccion_cliente", document
-						.getElementById("direccion_cliente").value);
-				formData.append("nombre_cliente", document
-						.getElementById("nombre_cliente").value);
-				formData.append("telefono_cliente", document
-						.getElementById("telefono_cliente").value);
-				formData.append("correo_cliente",
-						document.getElementById("correo_cliente").value);
+				formData.append("cedula_usuario", document
+						.getElementById("cedula_usuario").value);
+				formData.append("email_usuario", document
+						.getElementById("email_usuario").value);
+				formData.append("nombre_usuario", document
+						.getElementById("nombre_usuario").value);
+				formData.append("password",
+						document.getElementById("password").value);
+				formData.append("usuario",
+						document.getElementById("usuario").value);
 				var xhr = new XMLHttpRequest();
-				//xhr.open("PUT", "http://localhost:8080/actualizarcliente");
-				xhr.open("PUT", baseUrl+"/actualizarcliente");
-
+				xhr.open("PUT", "http://localhost:8080/actualizarusuarios");
 
 				var element = document.getElementById("error");
 				element.classList.add("visually-hidden");
 				var element2 = document.getElementById("correcto");
 				element2.classList.remove("visually-hidden");
 
-				document.getElementById("cedula_cliente").value = "";
-				document.getElementById("direccion_cliente").value = "";
-				document.getElementById("nombre_cliente").value = "";
-				document.getElementById("telefono_cliente").value = "";
-				document.getElementById("correo_cliente").value = "";
+				document.getElementById("cedula_usuario").value = "";
+				document.getElementById("email_usuario").value = "";
+				document.getElementById("nombre_usuario").value = "";
+				document.getElementById("password").value = "";
+				document.getElementById("usuario").value = "";
 				xhr.send(formData);
 
 			} else {
@@ -189,18 +184,15 @@
 				element.classList.remove("visually-hidden");
 				var element2 = document.getElementById("correcto");
 				element2.classList.add("visually-hidden");
-				document.getElementById("cedula_cliente").value = "";
-				document.getElementById("direccion_cliente").value = "";
-				document.getElementById("nombre_cliente").value = "";
-				document.getElementById("telefono_cliente").value = "";
-				document.getElementById("correo_cliente").value = "";
+				document.getElementById("cedula_usuario").value = "";
+				document.getElementById("email_usuario").value = "";
+				document.getElementById("nombre_usuario").value = "";
+				document.getElementById("password").value = "";
+				document.getElementById("usuario").value = "";
 			}
 		}
 	</script>
 
 
-
 </body>
 </html>
-
-

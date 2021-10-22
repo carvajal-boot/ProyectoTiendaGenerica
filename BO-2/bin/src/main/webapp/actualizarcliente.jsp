@@ -1,7 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
 
-<!DOCTYPE html>
 <html>
 
 <head>
@@ -11,8 +8,7 @@
 <title>Sofía Castañeda</title>
 
 <!-- LLamando librerias y estilos de Bootstarp -->
-<link href="Style/actualizarproveedor.css" rel="stylesheet"
-	type="text/css" />
+<link href="Style/actualizarcliente.css" rel="stylesheet" type="text/css" />
 
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -20,7 +16,7 @@
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
 
-<link href="Style/actualizarproveedor.css" rel="stylesheet" type="text/css" />
+<link href="Style/actualizarcliente.css" rel="stylesheet" type="text/css" />
 
 <!-- font awesome -->
 <link rel="stylesheet"
@@ -58,7 +54,7 @@
 						<br> <i class="fas fa-user-circle titulo fa-4x"></i> <br>
 						<br>
 						<h1 class="titulo">SU TIENDA GENÉRICA</h1>
-						<h4 class="titulo">Registre los datos del proveedor</h4>
+						<h4 class="titulo">Registre los datos del cliente</h4>
 					</center>
 					<br>
 					<center>
@@ -69,8 +65,8 @@
 						<div class="input-group">
 							<span class="input-group-text" id="basic-addon1"><i
 								class="fas fa-id-card-alt"></i></span> <input type="text"
-								class="form-control" placeholder="Nit" aria-label="Username"
-								aria-describedby="basic-addon1" required id="cedula_proveedor">
+								class="form-control" placeholder="Cédula" aria-label="Username"
+								aria-describedby="basic-addon1" required id="cedula_cliente">
 						</div>
 
 						<div class="input-group">
@@ -78,14 +74,14 @@
 								class="far fa-user-circle"></i></span> <input type="text"
 								class="form-control" placeholder="Nombre Completo"
 								aria-label="Username" aria-describedby="basic-addon1" required
-								id="nombre_proveedor">
+								id="nombre_cliente">
 						</div>
 
 						<div class="input-group">
 							<span class="input-group-text" id="basic-addon1"><i
 								class="fas fa-envelope"></i></i></span> <input type="text"
-								class="form-control" placeholder="Ciudad" aria-label="Username"
-								aria-describedby="basic-addon1" required id="ciudad_proveedor">
+								class="form-control" placeholder="Email" aria-label="Username"
+								aria-describedby="basic-addon1" required id="correo_cliente">
 						</div>
 
 						<div class="input-group">
@@ -93,33 +89,31 @@
 								class="fas fa-map-marker-alt"></i></i></span> <input type="text"
 								class="form-control" placeholder="Dirección"
 								aria-label="Username" aria-describedby="basic-addon1" required
-								id="direccion_proveedor">
+								id="direccion_cliente">
 						</div>
 
 						<div class="input-group">
 							<span class="input-group-text" id="basic-addon1"><i
-								class="fas fa-mobile-alt"></i></span> <input type="text"
+								class="fas fa-mobile-alt"></i></span> <input type="password"
 								class="form-control" placeholder="Contacto"
 								aria-label="Username" aria-describedby="basic-addon1" required
-								id="telefono_proveedor">
+								id="telefono_cliente">
 						</div>
 						<br>
 						<div class="d-grid gap-2 col-3 mx-auto">
-							<button type="button" class="btn btn-dark" onclick="actualizar()">
+							<button type="button" class="btn btn-outline-info"
+								onclick="actualizar()">
 								</i> <i class="fas fa-sync"></i> ACTUALIZAR
 							</button>
 							<br>
+							<div id="error" class="alert alert-danger visually-hidden"
+								role="alert">Error al actualizar el cliente, verifique que
+								la cedula y usuario dados sean validos</div>
+
+							<div id="correcto" class="alert alert-success visually-hidden"
+								role="alert">Usuario actualizado con exito</div>
 					</center>
-					<center>
-					<div id="error" class="alert alert-danger visually-hidden"
-						role="alert">Error al actualizar el proveedor, verifique que no
-						exista un proveedor con los datos dados</div>
-
-					<div id="correcto" class="alert alert-success visually-hidden"
-						role="alert">Proveedor actualizado con exito</div>
-						</center>
 				</div>
-
 			</div>
 		</div>
 	</div>
@@ -128,32 +122,28 @@
 
 	<script>
 		function actualizar() {
-			
-			var getUrl = window.location;
-			var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
-			var x = document.getElementById("nombre_proveedor").value;
-			var y = document.getElementById("cedula_proveedor").value;
+			var x = document.getElementById("nombre_cliente").value;
+			var y = document.getElementById("cedula_cliente").value;
 			var req = new XMLHttpRequest();
 			var coincidencia = false;
-			//req.open('GET', 'http://localhost:8080/listarproveedores', false);
-			req.open('GET', baseUrl+'/listarproveedores', false);
+			req.open('GET', 'http://localhost:8080/listarclientes', false);
 			req.send(null);
-			var proveedores = null;
+			var clientes = null;
 			if (req.status == 200)
-				proveedores = JSON.parse(req.responseText);
+				clientes = JSON.parse(req.responseText);
 			console.log(JSON.parse(req.responseText));
 
-			for (i = 0; i < proveedores.length; i++) {
-				console.log(proveedores[i].nombre_proveedor);
-				console.log(proveedores[i].cedula_proveedor);
-				if (proveedores[i].nombre_proveedor === x) {
-					console.log(proveedores[i].cliente + " " + x);
+			for (i = 0; i < clientes.length; i++) {
+				console.log(clientes[i].nombre_cliente);
+				console.log(clientes[i].cedula_cliente);
+				if (clientes[i].nombre_cliente === x) {
+					console.log(clientes[i].cliente + " " + x);
 					coincidencia = true
 					break;
 				}
 
-				if (proveedores[i].cedula_proveedor == y) {
-					console.log(proveedores[i].cedula_proveedor + " " + y);
+				if (clientes[i].cedula_cliente == y) {
+					console.log(clientes[i].cedula_cliente + " " + y);
 					coincidencia = true
 					break;
 				}
@@ -162,30 +152,29 @@
 
 			if (coincidencia != false) {
 				var formData = new FormData();
-				formData.append("cedula_proveedor", document
-						.getElementById("cedula_proveedor").value);
-				formData.append("ciudad_proveedor", document
-						.getElementById("ciudad_proveedor").value);
-				formData.append("direccion_proveedor", document
-						.getElementById("direccion_proveedor").value);
-				formData.append("nombre_proveedor", document
-						.getElementById("nombre_proveedor").value);
-				formData.append("telefono_proveedor", document
-						.getElementById("telefono_proveedor").value);
+				formData.append("cedula_cliente", document
+						.getElementById("cedula_cliente").value);
+				formData.append("direccion_cliente", document
+						.getElementById("direccion_cliente").value);
+				formData.append("nombre_cliente", document
+						.getElementById("nombre_cliente").value);
+				formData.append("telefono_cliente", document
+						.getElementById("telefono_cliente").value);
+				formData.append("correo_cliente",
+						document.getElementById("correo_cliente").value);
 				var xhr = new XMLHttpRequest();
-				//xhr.open("PUT", "http://localhost:8080/actualizarproveedor");
-				xhr.open("PUT", baseUrl+"/actualizarproveedor");
+				xhr.open("PUT", "http://localhost:8080/actualizarcliente");
 
 				var element = document.getElementById("error");
 				element.classList.add("visually-hidden");
 				var element2 = document.getElementById("correcto");
 				element2.classList.remove("visually-hidden");
 
-				document.getElementById("cedula_proveedor").value = "";
-				document.getElementById("ciudad_proveedor").value = "";
-				document.getElementById("direccion_proveedor").value = "";
-				document.getElementById("nombre_proveedor").value = "";
-				document.getElementById("telefono_proveedor").value = "";
+				document.getElementById("cedula_cliente").value = "";
+				document.getElementById("direccion_cliente").value = "";
+				document.getElementById("nombre_cliente").value = "";
+				document.getElementById("telefono_cliente").value = "";
+				document.getElementById("correo_cliente").value = "";
 				xhr.send(formData);
 
 			} else {
@@ -193,16 +182,18 @@
 				element.classList.remove("visually-hidden");
 				var element2 = document.getElementById("correcto");
 				element2.classList.add("visually-hidden");
-				document.getElementById("cedula_proveedor").value = "";
-				document.getElementById("ciudad_proveedor").value = "";
-				document.getElementById("direccion_proveedor").value = "";
-				document.getElementById("nombre_proveedor").value = "";
-				document.getElementById("telefono_proveedor").value = "";
-
+				document.getElementById("cedula_cliente").value = "";
+				document.getElementById("direccion_cliente").value = "";
+				document.getElementById("nombre_cliente").value = "";
+				document.getElementById("telefono_cliente").value = "";
+				document.getElementById("correo_cliente").value = "";
 			}
 		}
 	</script>
 
 
+
 </body>
 </html>
+
+

@@ -1,0 +1,27 @@
+body{
+  background-image:  url("https://cdn.pixabay.com/photo/2016/10/02/19/36/pumpkin-1710278_960_720.jpg");
+  background-size: cover;
+ 
+  }
+
+body::after {
+  position: absolute;
+}
+
+.formulario{
+  background-color: rgba(189, 138, 63, 0.884);
+  border-radius: 10px;
+  width: 75%;
+  position: relative;
+  left: -400px;
+  top: 30%;
+  
+}
+
+.titulo{
+  color: whitesmoke;
+}
+
+.input-group{
+  width: 75%;
+}

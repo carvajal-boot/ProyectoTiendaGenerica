@@ -1,4 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -8,7 +11,7 @@
 <title>Sofía Castañeda</title>
 
 <!-- LLamando librerias y estilos de Bootstarp -->
-<link href="Style/actualizarcliente.css" rel="stylesheet" type="text/css" />
+<link href="Style/buscarcliente.css" rel="stylesheet" type="text/css" />
 
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -16,7 +19,7 @@
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
 
-<link href="Style/actualizarcliente.css" rel="stylesheet" type="text/css" />
+<link href="Style/buscarcliente.css" rel="stylesheet" type="text/css" />
 
 <!-- font awesome -->
 <link rel="stylesheet"
@@ -44,7 +47,6 @@
 		</div>
 		</h5>
 
-
 	<div class="container p-4">
 		<div class="row justify-content-end">
 			<div class="col-10">
@@ -54,11 +56,20 @@
 						<br> <i class="fas fa-user-circle titulo fa-4x"></i> <br>
 						<br>
 						<h1 class="titulo">SU TIENDA GENÉRICA</h1>
-						<h4 class="titulo">Registre los datos del cliente</h4>
+						<h4 class="titulo">Ingrese el cliente a buscar</h4>
+						<br>
+						<div class="input-group">
+							<span class="input-group-text" id="basic-addon1"><i
+								class="fas fa-id-card-alt"></i></span> <input type="text"
+								class="form-control" placeholder="cedula" aria-label="Username"
+								aria-describedby="basic-addon1" required id="usersearch">
+						</div>
+
 					</center>
 					<br>
 					<center>
-						<br>
+
+						<br> <br>
 					</center>
 
 					<center>
@@ -66,7 +77,8 @@
 							<span class="input-group-text" id="basic-addon1"><i
 								class="fas fa-id-card-alt"></i></span> <input type="text"
 								class="form-control" placeholder="Cédula" aria-label="Username"
-								aria-describedby="basic-addon1" required id="cedula_cliente">
+								aria-describedby="basic-addon1" required id="nit_cliente"
+								disabled="disabled">
 						</div>
 
 						<div class="input-group">
@@ -74,22 +86,23 @@
 								class="far fa-user-circle"></i></span> <input type="text"
 								class="form-control" placeholder="Nombre Completo"
 								aria-label="Username" aria-describedby="basic-addon1" required
-								id="nombre_cliente">
+								id="nombre_proveedor" disabled="disabled">
 						</div>
 
 						<div class="input-group">
 							<span class="input-group-text" id="basic-addon1"><i
 								class="fas fa-envelope"></i></i></span> <input type="text"
 								class="form-control" placeholder="Email" aria-label="Username"
-								aria-describedby="basic-addon1" required id="correo_cliente">
+								aria-describedby="basic-addon1" required id="ciudad"
+								disabled="disabled">
 						</div>
 
 						<div class="input-group">
 							<span class="input-group-text" id="basic-addon1"><i
-								class="fas fa-map-marker-alt"></i></i></span> <input type="text"
+								class="fas fa-map-marker-alt"></i></span> <input type="text"
 								class="form-control" placeholder="Dirección"
 								aria-label="Username" aria-describedby="basic-addon1" required
-								id="direccion_cliente">
+								id="direccion_cliente" disabled="disabled">
 						</div>
 
 						<div class="input-group">
@@ -97,21 +110,22 @@
 								class="fas fa-mobile-alt"></i></span> <input type="password"
 								class="form-control" placeholder="Contacto"
 								aria-label="Username" aria-describedby="basic-addon1" required
-								id="telefono_cliente">
+								id="telefono_favorito" disabled="disabled">
 						</div>
 						<br>
-						<div class="d-grid gap-2 col-3 mx-auto">
-							<button type="button" class="btn btn-outline-info"
-								onclick="actualizar()">
-								</i> <i class="fas fa-sync"></i> ACTUALIZAR
+						<div class="d-grid gap-2 col-4 mx-auto">
+							<button type="button" class="btn btn-outline-warning"
+								onclick="enviar()">
+								<i class="fas fa-search"></i> BUSCAR
 							</button>
 							<br>
+
 							<div id="error" class="alert alert-danger visually-hidden"
-								role="alert">Error al actualizar el cliente, verifique que
-								la cedula y usuario dados sean validos</div>
+								role="alert">Error al buscar el cliente, el cliente no
+								existe</div>
 
 							<div id="correcto" class="alert alert-success visually-hidden"
-								role="alert">Usuario actualizado con exito</div>
+								role="alert">cliente encontrado con exito</div>
 					</center>
 				</div>
 			</div>
@@ -119,81 +133,48 @@
 	</div>
 	</div>
 
-
 	<script>
-		function actualizar() {
-			// url aws
-			var getUrl = window.location;
-			var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];		
-			
-			var x = document.getElementById("nombre_cliente").value;
-			var y = document.getElementById("cedula_cliente").value;
+		function enviar() {
+
 			var req = new XMLHttpRequest();
 			var coincidencia = false;
-			//req.open('GET', 'http://localhost:8080/listarclientes', false);
-			req.open('GET', baseUrl+'/listarclientes', false);
+			var user = document.getElementById("usersearch").value;
+			req.open('GET',
+					'http://localhost:8080/consultarcliente?client='
+							+ user, false);
 			req.send(null);
-			var clientes = null;
+			var usuario = null;
 			if (req.status == 200)
-				clientes = JSON.parse(req.responseText);
+				usuario = JSON.parse(req.responseText);
 			console.log(JSON.parse(req.responseText));
 
-			for (i = 0; i < clientes.length; i++) {
-				console.log(clientes[i].nombre_cliente);
-				console.log(clientes[i].cedula_cliente);
-				if (clientes[i].nombre_cliente === x) {
-					console.log(clientes[i].cliente + " " + x);
-					coincidencia = true
-					break;
-				}
+			var element = document.getElementById("error");
+			element.classList.add("visually-hidden");
+			var element2 = document.getElementById("correcto");
+			element2.classList.remove("visually-hidden");
 
-				if (clientes[i].cedula_cliente == y) {
-					console.log(clientes[i].cedula_cliente + " " + y);
-					coincidencia = true
-					break;
-				}
-			}
-			console.log(coincidencia);
+			console.log(usuario.toString());
 
-			if (coincidencia != false) {
-				var formData = new FormData();
-				formData.append("cedula_cliente", document
-						.getElementById("cedula_cliente").value);
-				formData.append("direccion_cliente", document
-						.getElementById("direccion_cliente").value);
-				formData.append("nombre_cliente", document
-						.getElementById("nombre_cliente").value);
-				formData.append("telefono_cliente", document
-						.getElementById("telefono_cliente").value);
-				formData.append("correo_cliente",
-						document.getElementById("correo_cliente").value);
-				var xhr = new XMLHttpRequest();
-				//xhr.open("PUT", "http://localhost:8080/actualizarcliente");
-				xhr.open("PUT", baseUrl+"/actualizarcliente");
+			if (usuario.toString() != "") {
 
+				document.getElementById("nit_cliente").value = usuario[0].nit_cliente;
+				document.getElementById("nombre_proveedor").value = usuario[0].nombre_proveedor;
+				document.getElementById("ciudad").value = usuario[0].ciudad;
+				document.getElementById("direccion_cliente").value = usuario[0].direccion_cliente;
+				document.getElementById("telefono_favorito").value = usuario[0].telefono_favorito;
 
-				var element = document.getElementById("error");
-				element.classList.add("visually-hidden");
-				var element2 = document.getElementById("correcto");
-				element2.classList.remove("visually-hidden");
-
-				document.getElementById("cedula_cliente").value = "";
-				document.getElementById("direccion_cliente").value = "";
-				document.getElementById("nombre_cliente").value = "";
-				document.getElementById("telefono_cliente").value = "";
-				document.getElementById("correo_cliente").value = "";
-				xhr.send(formData);
+				document.getElementById("usersearch").value = "";
 
 			} else {
 				var element = document.getElementById("error");
 				element.classList.remove("visually-hidden");
 				var element2 = document.getElementById("correcto");
 				element2.classList.add("visually-hidden");
-				document.getElementById("cedula_cliente").value = "";
+				document.getElementById("nit_cliente").value = "";
+				document.getElementById("nombre_proveedor").value = "";
+				document.getElementById("ciudad").value = "";
 				document.getElementById("direccion_cliente").value = "";
-				document.getElementById("nombre_cliente").value = "";
-				document.getElementById("telefono_cliente").value = "";
-				document.getElementById("correo_cliente").value = "";
+				document.getElementById("telefono_favorito").value = "";
 			}
 		}
 	</script>
@@ -202,5 +183,3 @@
 
 </body>
 </html>
-
-
