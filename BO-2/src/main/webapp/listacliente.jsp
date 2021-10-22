@@ -54,10 +54,12 @@
 </div> -->
 
 	<script>
-		var baseurl = "http://localhost:8080/listarclientes";
+	var getUrl = window.location;
+	var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+		var baseurld = baseUrl+"/listarclientes";
 		function loadproveedores() {
 			var xmlhttp = new XMLHttpRequest();
-			xmlhttp.open("GET", baseurl, true);
+			xmlhttp.open("GET", baseurld, true);
 			xmlhttp.onreadystatechange = function() {
 				if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
 					var proveedores = JSON.parse(xmlhttp.responseText);

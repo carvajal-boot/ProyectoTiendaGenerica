@@ -270,11 +270,13 @@
 		/* Usuarios */
 
 		function enviar() {
+			var getUrl = window.location;
+			var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
 			var x = document.getElementById("user").value;
 			var y = document.getElementById("cedula_usuario").value;
 			var req = new XMLHttpRequest();
 			var coincidencia = false;
-			req.open('GET', 'http://localhost:8080/listarusuarios', false);
+			req.open('GET', baseUrl+'/listarusuarios', false);
 			req.send(null);
 			var usuarios = null;
 			if (req.status == 200)
@@ -311,7 +313,7 @@
 				formData.append("usuario",
 						document.getElementById("user").value);
 				var xhr = new XMLHttpRequest();
-				xhr.open("POST", "http://localhost:8080/registrarusuario");
+				xhr.open("POST", baseUrl+"/registrarusuario");
 
 				var element = document.getElementById("error");
 				element.classList.add("visually-hidden");
@@ -345,7 +347,7 @@
 			var y = document.getElementById("cedula_cliente").value;
 			var req = new XMLHttpRequest();
 			var coincidencia = false;
-			req.open('GET', 'http://localhost:8080/listarclientes', false);
+			req.open('GET', baseUrl+'/listarclientes', false);
 			req.send(null);
 			var clientes = null;
 			if (req.status == 200)
@@ -382,7 +384,7 @@
 				formData.append("correo_cliente",
 						document.getElementById("correo_cliente").value);
 				var xhr = new XMLHttpRequest();
-				xhr.open("POST", "http://localhost:8080/registrarcliente");
+				xhr.open("POST", baseUrl+"/registrarcliente");
 
 				var element = document.getElementById("errorclientes");
 				element.classList.add("visually-hidden");

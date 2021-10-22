@@ -85,11 +85,15 @@
 
 		function enviar() {
 
+			var getUrl = window.location;
+			var baseUrl = getUrl.protocol + "//" + getUrl.host + "/"
+					+ getUrl.pathname.split('/')[1];
+
 			var req = new XMLHttpRequest();
 			var coincidencia = false;
 			var user = document.getElementById("usersearch").value;
-			req.open('GET', 'http://localhost:8080/listarreportes?cliente='
-					+ user, false);
+			//req.open('GET', 'http://localhost:8080/listarreportes?cliente='+ user, false);
+			req.open('GET', baseUrl+'/listarreportes?cliente='+ user', false);
 			req.send(null);
 			var proveedores = null;
 			if (req.status == 200)
@@ -117,11 +121,10 @@
 			}
 			document.getElementById("nit_cliente").value = suma;
 
-		/* } */
+			/* } */
 
-		/* function total() { */
+			/* function total() { */
 
-			
 		}
 	</script>
 
@@ -129,7 +132,7 @@
 
 	</script>
 	<center>
-		<h1 class= "title">
+		<h1 class="title">
 			<i class="fas fa-list-ol"></i> Tabla de Ventas
 		</h1>
 	</center>

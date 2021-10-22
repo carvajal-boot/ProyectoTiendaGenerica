@@ -331,10 +331,13 @@
 	<script>
 		
 		function traerNombreCliente() {
+			
+			var getUrl = window.location;
+			var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
 			var client = document.getElementById("cedula_cliente").value;
 			var req = new XMLHttpRequest();
 			var coincidencia = false;
-			req.open('GET', 'http://localhost:8080/consultarcliente?client='
+			req.open('GET', baseUrl+'/consultarcliente?client='
 					+ client, false);
 			req.send(null);
 			var cliente = null;
@@ -361,7 +364,7 @@
 			var user = document.getElementById("cedula_usuario").value;
 			var req = new XMLHttpRequest();
 			var coincidencia = false;
-			req.open('GET', 'http://localhost:8080/consultarusuario?usuario='
+			req.open('GET', baseUrl+'/consultarusuario?usuario='
 					+ user, false);
 			req.send(null);
 			var usuario = null;
@@ -389,7 +392,7 @@
 			var prod1 = document.getElementById("codigo_producto1").value;
 			var req = new XMLHttpRequest();
 			var coincidencia = false;
-			req.open('GET', 'http://localhost:8080/consultarproducto?code='
+			req.open('GET', baseUrl+'/consultarproducto?code='
 					+ prod1, false);
 			req.send(null);
 			var producto1 = null;
@@ -420,7 +423,7 @@
 			var prod2 = document.getElementById("codigo_producto2").value;
 			var req = new XMLHttpRequest();
 			var coincidencia = false;
-			req.open('GET', 'http://localhost:8080/consultarproducto?code='
+			req.open('GET', baseUrl+'/consultarproducto?code='
 					+ prod2, false);
 			req.send(null);
 			var producto2 = null;
@@ -449,7 +452,7 @@
 			var prod3 = document.getElementById("codigo_producto3").value;
 			var req = new XMLHttpRequest();
 			var coincidencia = false;
-			req.open('GET', 'http://localhost:8080/consultarproducto?code='
+			req.open('GET', baseUrl+'/consultarproducto?code='
 					+ prod3, false);
 			req.send(null);
 			var producto3 = null;
@@ -544,7 +547,7 @@
 				formData.append("valor_venta", document
 						.getElementById("total_venta_iva").value);
 				var xhr = new XMLHttpRequest();
-				xhr.open("POST", "http://localhost:8080/registrarventa");
+				xhr.open("POST", baseUrl+"/registrarventa");
 				xhr.send(formData);
 
 				setTimeout(
@@ -589,7 +592,7 @@
 									var xhr2 = new XMLHttpRequest();
 									xhr2
 											.open("POST",
-													"http://localhost:8080/registrardetalleventa");
+													baseUrl+"/registrardetalleventa");
 									xhr2.send(formData2);
 								}
 

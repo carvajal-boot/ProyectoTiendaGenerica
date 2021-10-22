@@ -96,6 +96,8 @@
 
 	<script>
 		function subirArchivo() {
+			var getUrl = window.location;
+			var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
 
 			try {
 
@@ -112,7 +114,7 @@
 
 					var xhr = new XMLHttpRequest();
 					xhr.open("DELETE",
-							"http://localhost:8080/eliminartodoproducto", true);
+							baseUrl+"/eliminartodoproducto", true);
 					xhr.send();
 
 					for (var i = 0; i < arrayLineas.length; i += 1) {
@@ -135,7 +137,7 @@
 						formData.append("precio_venta", arraydatos[5]);
 						var xhr = new XMLHttpRequest();
 						xhr.open("POST",
-								"http://localhost:8080/registrarproducto");
+								baseUrl+"/registrarproducto");
 
 						xhr.send(formData);
 					}
