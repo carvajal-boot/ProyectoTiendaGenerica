@@ -1,0 +1,30 @@
+body{
+  background-image:  url("https://cdn.pixabay.com/photo/2017/03/14/08/36/wood-2142308_960_720.jpg");
+  background-size: cover;
+
+}
+
+body::after{
+  position: absolute;
+}
+
+.formulario{
+  background-color: rgba(61, 194, 68, 0.5);
+  border-radius: 20px;
+  width: 50%;
+  position: relative;
+  left: 15px;
+  
+}
+
+.titulo{
+  color: green(112, 43, 43);
+}
+
+.input-group{
+  width: 75%;
+}
+
+.form-control{
+  width: 50%;
+}

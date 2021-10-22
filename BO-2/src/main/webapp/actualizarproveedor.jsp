@@ -128,11 +128,15 @@
 
 	<script>
 		function actualizar() {
+			
+			var getUrl = window.location;
+			var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
 			var x = document.getElementById("nombre_proveedor").value;
 			var y = document.getElementById("cedula_proveedor").value;
 			var req = new XMLHttpRequest();
 			var coincidencia = false;
-			req.open('GET', 'http://localhost:8080/listarproveedores', false);
+			//req.open('GET', 'http://localhost:8080/listarproveedores', false);
+			req.open('GET', baseUrl+'/listarproveedores', false);
 			req.send(null);
 			var proveedores = null;
 			if (req.status == 200)
@@ -169,7 +173,8 @@
 				formData.append("telefono_proveedor", document
 						.getElementById("telefono_proveedor").value);
 				var xhr = new XMLHttpRequest();
-				xhr.open("PUT", "http://localhost:8080/actualizarproveedor");
+				//xhr.open("PUT", "http://localhost:8080/actualizarproveedor");
+				xhr.open("PUT", baseUrl+"/actualizarproveedor");
 
 				var element = document.getElementById("error");
 				element.classList.add("visually-hidden");

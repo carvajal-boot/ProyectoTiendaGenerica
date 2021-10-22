@@ -71,7 +71,7 @@ public class ProveedorDAO {
 		try {
 			// prepare la sentencia en la base de datos
 			PreparedStatement consulta = conex.getConnection()
-					.prepareStatement("SELECT * FROM proveedores where cedula_proveedor = ? ");
+					.prepareStatement("SELECT * FROM proveedores where nit_proveedor = ? ");
 
 			// se cambia el comodin ? por el dato que ha llegado en el parametro de la
 			// funcion

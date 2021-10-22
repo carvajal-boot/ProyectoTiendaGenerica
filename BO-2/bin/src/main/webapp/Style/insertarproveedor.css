@@ -1,0 +1,24 @@
+body{
+  background-image:  url("https://cdn.pixabay.com/photo/2016/05/19/12/15/kiwi-1402780_960_720.jpg");
+  background-size: cover;
+
+  }
+
+
+.formulario{
+  background-color: rgba(148, 138, 81, 0.897);
+  border-radius: 10px;
+  width: 75%;
+  position: relative;
+  left: 100px;
+  top: 30%;
+  
+}
+
+.titulo{
+  color: currentColor;
+}
+
+.input-group{
+  width: 70%;
+}

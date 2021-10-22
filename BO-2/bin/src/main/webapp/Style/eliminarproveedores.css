@@ -1,0 +1,24 @@
+body{
+  background-image:  url("https://cdn.pixabay.com/photo/2017/04/18/15/10/strawberry-ice-cream-2239377_960_720.jpg");
+  background-size: cover;
+
+  }
+
+
+.formulario{
+  background-color: rgba(167, 103, 103, 0.5);
+  border-radius: 10px;
+  width: 75%;
+  position: relative;
+  left: -400px;
+  top: 50%;
+  
+}
+
+.titulo{
+  color: black;
+}
+
+.input-group{
+  width: 60%;
+}

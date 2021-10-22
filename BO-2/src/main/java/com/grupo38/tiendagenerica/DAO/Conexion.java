@@ -4,11 +4,11 @@ import java.sql.*;
 public class Conexion {
 	
 	/** Parametros de conexion */
-	static String nombre_base_datos = "tiendaGenerica";
-	static String usuariobd = "root";
-	static String clavebd = "Camilo.84$";
+	static String nombre_base_datos = "g38e7";
+	static String usuariobd = "admin";
+	static String clavebd = "minticroca";
 //	jdbc:mysql://tiendasgenericasdr-g9-g38-53.czo3ixoe3xoe.us-east-1.rds.amazonaws.com
-	static String url = "jdbc:mysql://127.0.0.1/" + nombre_base_datos;
+	static String url = "jdbc:mariadb://tiendasgenericasdr-g9-g38-53.czo3ixoe3xoe.us-east-1.rds.amazonaws.com/" + nombre_base_datos;
 	
 	//objeto sin inicializar de la conexión
 	Connection connection = null;
@@ -17,7 +17,7 @@ public class Conexion {
 	public Conexion() {
 		try {
 			// obtenemos el driver de para mysql
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			Class.forName("org.mariadb.jdbc.Driver");
 			// obtenemos la conexión
 			connection = DriverManager.getConnection(url, usuariobd, clavebd);
 			

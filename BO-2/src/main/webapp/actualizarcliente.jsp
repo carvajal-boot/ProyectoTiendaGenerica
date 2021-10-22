@@ -122,11 +122,16 @@
 
 	<script>
 		function actualizar() {
+			// url aws
+			var getUrl = window.location;
+			var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];		
+			
 			var x = document.getElementById("nombre_cliente").value;
 			var y = document.getElementById("cedula_cliente").value;
 			var req = new XMLHttpRequest();
 			var coincidencia = false;
-			req.open('GET', 'http://localhost:8080/listarclientes', false);
+			//req.open('GET', 'http://localhost:8080/listarclientes', false);
+			req.open('GET', baseUrl+'/listarclientes', false);
 			req.send(null);
 			var clientes = null;
 			if (req.status == 200)
@@ -163,7 +168,9 @@
 				formData.append("correo_cliente",
 						document.getElementById("correo_cliente").value);
 				var xhr = new XMLHttpRequest();
-				xhr.open("PUT", "http://localhost:8080/actualizarcliente");
+				//xhr.open("PUT", "http://localhost:8080/actualizarcliente");
+				xhr.open("PUT", baseUrl+"/actualizarcliente");
+
 
 				var element = document.getElementById("error");
 				element.classList.add("visually-hidden");
