@@ -136,12 +136,16 @@
 
 	 	<script>
 		function enviar() {
+				
+				var getUrl = window.location;
+				var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
 
-				//url aws
+				
 				var req = new XMLHttpRequest();
 				var coincidencia = false;
 				var user=   document.getElementById("usersearch").value;
-				req.open('GET', 'http://localhost:8080/consultarproveedor?proveedor='+user, false);
+				//req.open('GET', 'http://localhost:8080/consultarproveedor?proveedor='+user, false);
+				req.open('GET',baseUrl+'/consultarproveedor?nit='+ user, false);
 				req.send(null);
 				var cedula_proveedor = null;
 				if (req.status == 200)

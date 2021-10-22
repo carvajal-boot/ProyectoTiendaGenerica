@@ -135,12 +135,15 @@
 
 	<script>
 		function enviar() {
+			
+			var getUrl = window.location;
+			var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
 
 			var req = new XMLHttpRequest();
 			var coincidencia = false;
 			var user = document.getElementById("usersearch").value;
-			req.open('GET', 'http://localhost:8080/consultarusuario?usuario='
-					+ user, false);
+			//req.open('GET', 'http://localhost:8080/consultarusuario?usuario='+ user, false);
+			req.open('GET',baseUrl+'/consultarusuario?usuario='+ user, false);			
 			req.send(null);
 			var usuario = null;
 			if (req.status == 200)
