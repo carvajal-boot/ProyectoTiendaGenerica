@@ -1,0 +1,27 @@
+body{
+  background-image:  url("https://cdn.pixabay.com/photo/2018/05/02/23/13/citrus-3369981_960_720.jpg");
+  background-size: cover;
+
+  }
+
+body::after{
+  position: absolute;
+}
+
+.formulario{
+  background-color: rgba(230, 227, 92, 0.5);
+  border-radius: 10px;
+  width: 75%;
+  position: relative;
+  left: 400px;
+  top: 30%;
+  
+}
+
+.titulo{
+  color: black;
+}
+
+.input-group{
+  width: 75%;
+}

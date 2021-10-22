@@ -197,6 +197,7 @@ public class DetalleVentaDAO {
 			while (res.next()) {
 				contador = (res.getInt("COUNT(*)")) + 1;
 			}
+			System.out.println("Aca imprimoooooooooo"+contador);
 
 			// cerrar resultado, sentencia y conexión
 			res.close();

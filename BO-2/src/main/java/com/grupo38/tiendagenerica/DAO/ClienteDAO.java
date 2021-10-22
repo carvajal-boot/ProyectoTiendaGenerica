@@ -85,7 +85,7 @@ public class ClienteDAO {
 				Usuario.setCedula_cliente(Integer.parseInt(res.getString("cedula_cliente")));
 				Usuario.setDireccion_cliente(res.getString("direccion_cliente"));
 				Usuario.setNombre_cliente(res.getString("nombre_cliente"));
-				Usuario.setTelefono_cliente(Integer.parseInt(res.getString("telefono_cliente")));
+				Usuario.setTelefono_cliente(res.getString("telefono_cliente"));
 				Usuario.setCorreo_cliente(res.getString("correo_cliente"));
 				listausuarios.add(Usuario);
 			}
@@ -137,7 +137,7 @@ public class ClienteDAO {
 				Usuario.setCedula_cliente(Integer.parseInt(res.getString("cedula_cliente")));
 				Usuario.setDireccion_cliente(res.getString("direccion_cliente"));
 				Usuario.setNombre_cliente(res.getString("nombre_cliente"));
-				Usuario.setTelefono_cliente(Integer.parseInt(res.getString("telefono_cliente")));
+				Usuario.setTelefono_cliente(res.getString("telefono_cliente"));
 				Usuario.setCorreo_cliente(res.getString("correo_cliente"));
 
 				listausuarios.add(Usuario);
